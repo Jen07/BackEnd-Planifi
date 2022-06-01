@@ -26,7 +26,7 @@ namespace BackEnd.Models
         public string Name { get; set; }
 
         [BsonElement("base64")]
-        public string File { get; set; }
+        public string Base64 { get; set; }
     }
 
 }
