@@ -15,8 +15,5 @@ namespace BackEnd.Models
         [BsonElement("variableSistema")]
         public string VariableSistema { get; set; }
 
-        [BsonElement("tipoArchivo")]
-        public string TipoArchivo { get; set; }
-
     }
 }

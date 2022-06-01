@@ -44,12 +44,20 @@ namespace BackEnd
             services.AddSingleton<IConfigurationSetting>(
                 d => d.GetRequiredService<IOptions<ConfigurationSetting>>().Value);
 
+            services.Configure<MemPoolSettings>
+            (Configuration.GetSection(nameof(MemPoolSettings)));
+
+            services.AddSingleton<IMemPoolSettings>(
+                d => d.GetRequiredService<IOptions<MemPoolSettings>>().Value);
+
 
             services.AddControllers();
             
             services.AddSingleton<UserService>();
 
             services.AddSingleton<ConfigurationService>();
+
+            services.AddSingleton<MemPoolService>();
 
             services.AddCors(Options =>
             {

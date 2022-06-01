@@ -1,0 +1,29 @@
+dbCollectionMemPool
+
+{
+  "owner":"",
+ "typeOfFile":"",
+ "date" : "", 
+ "size" : "",
+"name" : "" ,
+  "base64" : "" 
+  
+}
+
+dbCollectionConfiguration
+
+{
+"cantidadBloques":"7",
+"variableSistema":"Bienvenido"
+}
+
+dbCollectionBlockchain
+
+{
+"userName":"Chris2",
+"name":"Christian Jesus",
+"lastName":"CaballariCCM",
+"mail":"chrisccm17@gmail.com",
+"birthDay":"78/03/1998",
+"password":"1234"
+}
