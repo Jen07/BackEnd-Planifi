@@ -27,3 +27,15 @@ dbCollectionBlockchain
 "birthDay":"78/03/1998",
 "password":"1234"
 }
+
+dbCollectionBlock
+
+{
+  "idBlock": "",
+  "date": "",
+  "test": "",
+  "milliSeconds": "",
+  "documents": "",
+  "previousHash": "",
+  "Hash": "" 
+}
