@@ -1,5 +1,6 @@
 ﻿using BackEnd.Models;
 using MongoDB.Driver;
+using MongoDB.Driver.Linq;
 using System.Collections.Generic;
 
 
@@ -20,6 +21,7 @@ namespace BackEnd.Services
 
             _memPoll = mongoCollection;
         }
+       
 
         public List<MemPool> AllConfiguration()
         {
@@ -37,7 +39,25 @@ namespace BackEnd.Services
             _memPoll.DeleteOne(d => d.Id == id);
         }
 
-      
+        public List<MemPool> mineList(int cantidad)
+        {
+
+            var result = (from d in _memPoll.AsQueryable<MemPool>() 
+                         select d).Take(cantidad).ToList();
+
+         
+            return result as List<MemPool>;
+  
+        }
+
+        public int getSizeMempool()
+        {
+            return _memPoll.Find(d => true).ToList().Count;
+        }
+        public void deleteMultiple()
+        {
+            //return _memPoll.;
+        }
 
     }
 }

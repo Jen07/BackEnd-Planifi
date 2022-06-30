@@ -12,11 +12,13 @@ namespace BackEnd.Controllers
     {
 
         public ConfigurationService _configurationService;
+        public MemPoolService _memPollService;
 
 
         public ConfigurationController(ConfigurationService configurationService)
         {
             _configurationService = configurationService;
+
         }
         [HttpGet]
         public ActionResult<List<Configuration>> Get()
@@ -44,5 +46,11 @@ namespace BackEnd.Controllers
             _configurationService.Delete(id);
             return Ok();
         }
+        [HttpGet("{username}")]
+        public ActionResult cantidadBloquesMinar(string username)
+        {
+            return Ok(_configurationService.numeroBloque(username));
+        }
+
     }
 }

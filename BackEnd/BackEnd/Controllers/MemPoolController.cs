@@ -38,5 +38,12 @@ namespace BackEnd.Controllers
             return Ok();
         }
 
+        [HttpGet("{cantidad}")]
+        public ActionResult cantidadBloquesMinar(int cantidad)
+        {
+            Ok(cantidad);
+            return Ok(_memPollService.mineList(cantidad));
+        }
+
     }
 }

@@ -51,6 +51,13 @@ namespace BackEnd
                 d => d.GetRequiredService<IOptions<MemPoolSettings>>().Value);
 
 
+           services.Configure<BlockSettings>
+            (Configuration.GetSection(nameof(BlockSettings)));
+
+            services.AddSingleton<IBlockSettings>(
+                d => d.GetRequiredService<IOptions<BlockSettings>>().Value);
+
+
             services.AddControllers();
             
             services.AddSingleton<UserService>();
@@ -58,6 +65,8 @@ namespace BackEnd
             services.AddSingleton<ConfigurationService>();
 
             services.AddSingleton<MemPoolService>();
+
+            services.AddSingleton<BlockService>();
 
             services.AddCors(Options =>
             {

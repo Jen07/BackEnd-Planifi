@@ -1,14 +1,16 @@
 ﻿using BackEnd.Models;
 using MongoDB.Driver;
+using MongoDB.Driver.Linq;
 using System.Collections.Generic;
 
 namespace BackEnd.Services
 {
-    public class ConfigurationService 
+    public class ConfigurationService
     {
 
-        
+
         private IMongoCollection<Configuration> _configuraciones;
+
 
         public ConfigurationService(IConfigurationSetting settings)
         {
@@ -18,10 +20,10 @@ namespace BackEnd.Services
 
 
             IMongoCollection<Configuration> mongoCollection = database.GetCollection<Configuration>(settings.Collection);
-            
+
             _configuraciones = mongoCollection;
         }
-
+       
 
         public void Delete(string id)
         {
@@ -43,5 +45,13 @@ namespace BackEnd.Services
             return _configuraciones.Find(d => true).ToList();
         }
 
+        public List<Configuration> numeroBloque(string variableSistema)
+        {
+            var result = (from d in _configuraciones.AsQueryable<Configuration>()
+                         where d.VariableSistema.Equals(variableSistema)
+                         select d).ToList();
+            return result;
+            }
+        }
     }
-}
+
