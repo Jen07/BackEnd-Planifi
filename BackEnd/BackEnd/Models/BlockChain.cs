@@ -26,13 +26,14 @@ namespace BackEnd.Models
         }
         public void NewBlokc(string previousHash, int idBlock)
         {
-           // string previoHash = "0000000000000000000000000000000000000000000000000000000000000000";
-
-          //  if (Blocks.Count > 0)
-          //  previoHash = Blocks[idBlock].Hash;
-            Block newBlock = new Block(idBlock+1, TempTransaccions, previousHash);
+            // string previoHash = "0000000000000000000000000000000000000000000000000000000000000000";
+            System.Diagnostics.Debug.WriteLine("Desde NewBlock"+idBlock);
+            //  if (Blocks.Count > 0)
+            //  previoHash = Blocks[idBlock].Hash;
+            Block newBlock = new Block(idBlock, TempTransaccions, previousHash);
           newBlock.MineBlock(Dificulty, newBlock);
             Blocks.Add(newBlock);
+            System.Diagnostics.Debug.WriteLine("Despues NewBlock" + newBlock.IdBlock);
 
 
             TempTransaccions = new List<Transaction>();

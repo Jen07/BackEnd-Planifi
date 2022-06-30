@@ -39,7 +39,7 @@ namespace BackEnd.Controllers
       }*/
 
       [HttpGet]
-      public ActionResult Minar()
+      public ActionResult<string> Minar()
       {
           
             
@@ -61,7 +61,7 @@ namespace BackEnd.Controllers
 
             if (sizeMempool < numberOfFilesPerBlock)
             {
-                return Ok("0");
+                return Ok("Cantidad de archivos insuficiente, no se puede minar");
             }
             else
             {
@@ -73,34 +73,38 @@ namespace BackEnd.Controllers
                     List<MemPool> listMepool = _memPollService.mineList(numberOfFilesPerBlock);
 
                     sizeBlock = _BlockService.getSizeBlocks();
-                   
+                    int numBloque = sizeBlock;
+
+                    numBloque++;
+
                     if (sizeBlock > 0)
                     {
-                        idBlock = (_BlockService.getLastBlock()[0].IdBlock);
+                        
                         previousHash = (_BlockService.getLastBlock()[0].Hash);
-                      
-                        System.Diagnostics.Debug.WriteLine(idBlock);
+                         
+                        System.Diagnostics.Debug.WriteLine("Numero bloque "+numBloque);
                         System.Diagnostics.Debug.WriteLine(previousHash);
 
                     }
                     listMepool.ForEach((file) => {
                         nodo.NewTransaccion(file.Base64,file.TypeOfFile,file.Name);
                     });
-                    nodo.NewBlokc(previousHash, idBlock);
+                    nodo.NewBlokc(previousHash, numBloque);
                    
                     Block block = nodo.Blocks[0];
-                    
-
+                    block.IdBlock = numBloque;
+                    block.Id = string.Empty;
+                    System.Diagnostics.Debug.WriteLine("Antes de insert " + block.IdBlock);
                     _BlockService.CreateBlock(block);
             
                     deleteMultiple(listMepool);
-
+                    //idBlock = 0;
                     sizeMempool = _memPollService.getSizeMempool();
                    
                 }
 
             }
-            return Ok("1"); ;
+            return Ok("Archivos minados Correctamente"); ;
         }
 
         public void deleteMultiple(List<MemPool> listMepool) {

@@ -46,6 +46,7 @@ namespace BackEnd.Services
 
         public Block CreateBlock(Block block)
         {
+
             _blocks.InsertOne(block);
             return block;
         }

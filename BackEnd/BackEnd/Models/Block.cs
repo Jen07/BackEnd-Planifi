@@ -126,7 +126,7 @@ namespace BackEnd.Models
             newBlock.Test = Test;
             newBlock.getDate();
             newBlock.MilliSeconds = miliSeconds;
-            System.Diagnostics.Debug.WriteLine(newBlock.Hash);
+            System.Diagnostics.Debug.WriteLine("Despues de Minado  "+newBlock.IdBlock);
           //  return null;
             //fecha
             //milisegundos
