@@ -58,7 +58,20 @@ namespace BackEnd.Models
             PreviousHash = previousHash;
             sw = new Stopwatch();
         }
-        
+
+        public Block(string id, string timesStamp, int test , long milliSeconds , int idBlock, string hash, string previousHash)
+        {
+            Id = id;
+            TimesStamp = timesStamp;
+            Test = test; 
+            MilliSeconds = milliSeconds;
+            IdBlock = idBlock;
+            Hash = hash;
+            PreviousHash = previousHash;    
+          
+        }
+
+
         private bool HashIsValid(string text, int difficulty)//Dificulti, es el numero de ceros por el que debe empezar el hash
         {
             string hash = HashHelper.CalculateHash(text);

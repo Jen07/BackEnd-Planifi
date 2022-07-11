@@ -43,7 +43,13 @@ namespace BackEnd.Services
             return _blocks.Find(d => true).ToList();
           //  return result;
         }
+        public List<Block> getAllBlockWithoutFile() 
+        {
+            var list = _blocks.Find(d => true).ToList();
 
+            return list;
+
+        }
         public Block CreateBlock(Block block)
         {
 

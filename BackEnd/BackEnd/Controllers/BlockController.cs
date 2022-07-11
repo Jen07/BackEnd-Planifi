@@ -25,12 +25,7 @@ namespace BackEnd.Controllers
             //_memPollService =  _BlockService.Mempoll(_memPollService);
 
         }
-        // GET api/<BlockController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
+     
 
     /*  [HttpGet]
       public ActionResult<int> Getd()
@@ -142,6 +137,14 @@ namespace BackEnd.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+        }
+        // GET api/<BlockController>/5
+        [HttpGet("{id}")]
+        public  ActionResult getAllBlockWithoutFile(int id)
+        {
+            
+            System.Diagnostics.Debug.WriteLine("Antes de insert " + _BlockService.getAllBlockWithoutFile());
+            return Ok(_BlockService.getAllBlockWithoutFile());
         }
     }
 }
