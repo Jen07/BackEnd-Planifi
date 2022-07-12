@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace BackEnd.Services
 {
-    public class MemPoolService
+    public class MemPoolService:IAction, IActionMempool
     {
         private IMongoCollection<MemPool> _memPoll;
 
@@ -21,7 +21,14 @@ namespace BackEnd.Services
 
             _memPoll = mongoCollection;
         }
-       
+        public int getSizeList()
+        {
+            return _memPoll.Find(d => true).ToList().Count;
+        }
+        public void Delete(string id)
+        {
+            _memPoll.DeleteOne(d => d.Id == id);
+        }
 
         public List<MemPool> AllConfiguration()
         {
@@ -33,30 +40,11 @@ namespace BackEnd.Services
             _memPoll.InsertOne(memPool);
             return memPool;
         }
-
-        public void Delete(string id)
-        {
-            _memPoll.DeleteOne(d => d.Id == id);
-        }
-
         public List<MemPool> mineList(int cantidad)
         {
-
             var result = (from d in _memPoll.AsQueryable<MemPool>() 
                          select d).Take(cantidad).ToList();
-
-         
             return result as List<MemPool>;
-  
-        }
-
-        public int getSizeMempool()
-        {
-            return _memPoll.Find(d => true).ToList().Count;
-        }
-        public void deleteMultiple()
-        {
-            //return _memPoll.;
         }
 
     }

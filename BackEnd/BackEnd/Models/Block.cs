@@ -99,9 +99,6 @@ namespace BackEnd.Models
         public string MineBlock(int dificulty,Block newBlock)
         {
 
-            // string initialText = string.Format("{0}{1}{2}", Id, TimesStamp, Documents.Select(va => va.Hash).Aggregate((i, j) => i + j));
-            // Console.WriteLine(ListConcat().Length);
-
             string sha = ListConcat();
             string initialText = string.Format("{0}{1}{2}{3}", IdBlock, TimesStamp, sha, PreviousHash);
             Test = 0;
@@ -114,24 +111,14 @@ namespace BackEnd.Models
             long miliSeconds = 0;
           
             while (!HashIsValid(text, dificulty))
-            {
-               // Console.WriteLine(TimeStapSeconds(DateTime.Now));
-
-                if (sec == TimeStapSeconds(DateTime.Now)) {
-                   
-                    //Console.WriteLine("Segundo "+ sec + " TimeStapSeconds "+ TimeStapSeconds(DateTime.Now));
+            {           
+                if (sec == TimeStapSeconds(DateTime.Now)) {                                
                     Test = 0;
-                  
-                  //  Console.WriteLine("Test "+Test);
-                    sec = TimeStapSeconds(DateTime.Now) + 1;
-                    
+                    sec = TimeStapSeconds(DateTime.Now) + 1;                    
                 }
                 Test++;
                 text = string.Format("{0}{1}", initialText, Test);
-              //Console.WriteLine("Test "+ Test+ " Testo: "+ text);
             }
-           // Console.WriteLine("Holaaaaa");
-           
             long di = new DateTimeOffset(DateTime.Now).ToUnixTimeMilliseconds();
             miliSeconds = di - timestamp;
             Hash = HashHelper.CalculateHash(text);
@@ -139,15 +126,7 @@ namespace BackEnd.Models
             newBlock.Test = Test;
             newBlock.getDate();
             newBlock.MilliSeconds = miliSeconds;
-            System.Diagnostics.Debug.WriteLine("Despues de Minado  "+newBlock.IdBlock);
-          //  return null;
-            //fecha
-            //milisegundos
-
-
-            //  Console.WriteLine("hASHHHHHHHHHHH "+newBlock.Hash);
-            //  Console.WriteLine("hASHHHHHHHHHHH " + newBlock.MilliSeconds);
-            //   Console.WriteLine("hASHHHHHHHHHHH " + newBlock.TimesStamp);
+           // System.Diagnostics.Debug.WriteLine("Despues de Minado  "+newBlock.IdBlock)
 
             return "hola";
         }

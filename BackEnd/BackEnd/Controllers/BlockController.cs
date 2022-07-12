@@ -44,7 +44,7 @@ namespace BackEnd.Controllers
 
             
 
-            int sizeMempool = _memPollService.getSizeMempool();
+            int sizeMempool = _memPollService.getSizeList();
 
             int sizeBlock =0;
 
@@ -94,8 +94,8 @@ namespace BackEnd.Controllers
             
                     deleteMultiple(listMepool);
                     //idBlock = 0;
-                    sizeMempool = _memPollService.getSizeMempool();
-                   
+                    sizeMempool = _memPollService.getSizeList();
+
                 }
 
             }
